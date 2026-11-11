@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050d17">
+<title>TECNO BLACK FRIDAY — SPIN & WIN</title>
+<meta name="description" content="Lance la roue TECNO BLACK FRIDAY et tente de gagner jusqu'à 25 % de réduction ou des écouteurs Bluetooth TECNO !">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TECNO BLACK FRIDAY — SPIN & WIN">
+<meta property="og:description" content="Lance la roue et tente de gagner un cadeau TECNO !">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#00a9e8;--blue-2:#42d5ff;--yellow:#ffd52e;--bg:#050d17;--line:rgba(255,255,255,.1);--text:#f4f9ff;--muted:#9bb1c2;--radius:22px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--text);background:radial-gradient(ellipse 80% 50% at 50% -5%,#123a55 0%,transparent 60%),linear-gradient(160deg,#07131f,var(--bg) 70%);background-attachment:fixed;font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-1;opacity:.16;animation:float 14s ease-in-out infinite alternate}
+.orb-1{width:420px;height:420px;background:var(--blue);top:15%;left:-200px}
+.orb-2{width:380px;height:380px;background:var(--yellow);top:60%;right:-200px;animation-delay:-6s}
+@keyframes float{to{transform:translate(40px,-50px) scale(1.15)}}
+
+/* Header */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 max(16px,calc((100% - 1160px)/2));background:rgba(5,13,23,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:2px}
+.brand-name{font-size:22px}.brand-divider{width:1px;height:22px;background:rgba(255,255,255,.35)}.brand-event{color:var(--blue-2);font-size:12px}
+.top-actions{display:flex;gap:8px}
+.ghost-btn{color:#fff;background:transparent;cursor:pointer;border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 14px;font:700 13px Inter,sans-serif;transition:.2s}
+.ghost-btn span{color:var(--yellow)}
+.ghost-btn:hover{border-color:var(--blue);background:rgba(0,169,232,.12)}
+
+/* Bandeau défilant */
+.ticker{overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,#ffd52e,#ffb300);color:#08131d;font:800 13px Inter,sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.ticker div{display:inline-flex;gap:40px;padding:8px 0;animation:marq 28s linear infinite}
+.ticker div span::after{content:"✦";margin-left:40px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+main{width:min(1160px,100% - 32px);margin:0 auto}
+
+/* Hero */
+.hero{text-align:center;padding:40px 0 26px}
+.tag{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;color:var(--yellow);background:rgba(255,213,46,.08);border:1px solid rgba(255,213,46,.35);font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px var(--yellow);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.3}}
+h1{margin:14px 0 6px;font:900 clamp(66px,15vw,132px)/.92 "Barlow Condensed",Impact,sans-serif;letter-spacing:2px;background:linear-gradient(180deg,#fff 30%,#a8e6ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 30px rgba(0,169,232,.35))}
+h1 em{font-style:normal;background:linear-gradient(180deg,var(--yellow),#ff9d00);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin:0 auto;max-width:520px;color:#c3d4e1;font-size:17px}
+.stats{list-style:none;display:flex;justify-content:center;gap:12px;padding:0;margin:24px 0 0;flex-wrap:wrap}
+.stats li{display:grid;min-width:110px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px}
+.stats strong{color:var(--yellow);font:800 28px/1.1 "Barlow Condensed",sans-serif}
+.stats span{color:var(--muted);font-size:12px;font-weight:600}
+
+/* Cartes */
+.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:22px;align-items:start}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(150deg,rgba(20,42,62,.92),rgba(9,20,31,.95));box-shadow:0 24px 70px rgba(0,0,0,.4)}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--blue),var(--yellow),var(--blue))}
+.game-card{padding:28px clamp(16px,4vw,38px) 30px}
+.prize-card{padding:28px 24px}
+.kicker{color:var(--blue-2);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+h2{margin:4px 0 0;font:800 32px/1.05 "Barlow Condensed",sans-serif}
+.muted{color:var(--muted);font-size:14px}
+
+/* Inscription */
+.register{max-width:440px;margin:24px auto 4px}
+.register-icon{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 12px;border-radius:20px;background:linear-gradient(135deg,rgba(255,213,46,.25),rgba(0,169,232,.18));font-size:32px}
+.register h3{margin:0;text-align:center;font:800 29px "Barlow Condensed",sans-serif}
+.register .muted{text-align:center;margin:6px 0 16px}
+label{display:block;margin:16px 0 7px;color:#d4e2ec;font-size:13px;font-weight:700}
+input[type=text],input[type=tel]{display:block;width:100%;min-height:52px;padding:13px 15px;color:#fff;background:#07121d;border:1.5px solid rgba(255,255,255,.18);border-radius:13px;outline:none;font:inherit;font-size:16px;transition:border-color .2s,box-shadow .2s}
+input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,169,232,.18)}
+input::placeholder{color:#5f7587}
+input.invalid{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.15)}
+.phone{display:flex;gap:8px}
+.prefix{flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:0 14px;min-height:52px;border:1.5px solid rgba(255,255,255,.18);border-radius:13px;background:#0b1c2b;font-weight:800;white-space:nowrap}
+.phone input{flex:1;min-width:0}
+.hint{margin:7px 2px 0;color:#7f96a8;font-size:12px}
+.legal{margin:16px 0 0;color:#7f96a8;font-size:12px;text-align:center;line-height:1.55}
+.form-error{margin:14px 0 0;padding:11px 14px;border-radius:12px;background:rgba(255,90,90,.12);border:1px solid rgba(255,107,107,.5);color:#ffb4b4;font-size:14px;font-weight:600;text-align:center}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* Boutons */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;padding:14px 22px;border:0;border-radius:15px;font:800 15px Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:transform .15s,filter .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-primary{color:#04121d;background:linear-gradient(100deg,var(--blue),#5fdcff);box-shadow:0 10px 28px rgba(0,169,232,.35)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.08)}
+.btn-primary:active:not(:disabled){transform:scale(.99)}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn-spin.inactive{opacity:.55;filter:grayscale(.5);animation:none}.link-btn{display:block;margin:6px auto 0;padding:6px 10px;background:none;border:0;color:var(--blue-2);font:600 13px Inter,sans-serif;text-decoration:underline;cursor:pointer}.version{display:block;margin-top:4px;font-size:11px;opacity:.55}
+.register .btn{margin-top:20px}
+
+/* Jeu */
+.welcome{display:flex;align-items:center;justify-content:center;gap:11px;margin:16px 0 6px}
+.avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;color:#06101a;background:linear-gradient(135deg,var(--yellow),#ff9d00);font-weight:900}
+.welcome div:last-child{display:grid;line-height:1.25}
+.welcome small{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+.welcome strong{font-size:16px}
+.wheel-stage{position:relative;width:min(430px,88vw);aspect-ratio:1;margin:26px auto 12px}
+.wheel-halo{position:absolute;inset:4%;border-radius:50%;background:conic-gradient(from 0deg,var(--blue),var(--yellow),var(--blue-2),var(--blue));filter:blur(38px);opacity:.35;animation:halo 6s linear infinite}
+@keyframes halo{to{transform:rotate(360deg)}}
+#wheel{position:relative;display:block;width:100%;height:100%;border-radius:50%;will-change:transform;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+.pointer{position:absolute;z-index:6;top:-16px;left:50%;transform:translateX(-50%);transform-origin:50% 20%;width:0;height:0;border-left:19px solid transparent;border-right:19px solid transparent;border-top:42px solid var(--yellow);filter:drop-shadow(0 4px 6px rgba(0,0,0,.7))}
+.pointer.tick{animation:tick .1s}
+@keyframes tick{50%{transform:translateX(-50%) rotate(-16deg)}}
+.hub{position:absolute;z-index:5;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 25%,#1d4560,#06101a 75%);border:4px solid #eaf9ff;box-shadow:0 0 0 4px var(--blue),0 6px 20px rgba(0,0,0,.6);font:900 clamp(13px,3.6vw,18px) "Barlow Condensed",sans-serif;letter-spacing:1px}
+.tries{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0 14px;color:var(--yellow);font-size:14px;font-weight:700}
+.pips{display:flex;gap:6px}
+.pips i{width:13px;height:13px;border-radius:50%;background:var(--yellow);box-shadow:0 0 10px rgba(255,213,46,.6);transition:.3s}
+.pips i.off{background:transparent;border:2px solid rgba(255,213,46,.35);box-shadow:none}
+.btn-spin{width:min(350px,100%);margin:0 auto;min-height:62px;font-size:17px;animation:pulse 2s infinite}
+.btn-spin:disabled{animation:none}
+@keyframes pulse{50%{box-shadow:0 10px 40px rgba(0,169,232,.7)}}
+.spin-icon{font-size:24px;line-height:1}
+.btn-spin.busy .spin-icon{animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.result{min-height:28px;margin-top:16px;text-align:center;font-size:16px;font-weight:700;color:#dfeaf3}
+.error{min-height:22px;margin:10px 0 0;color:#ffb4b4;font-size:15px;font-weight:700;text-align:center}.error:not(:empty){padding:11px 14px;border-radius:12px;background:rgba(255,90,90,.12);border:1px solid rgba(255,107,107,.5)}
+
+.win-card{margin:16px auto 0;max-width:380px;padding:16px;text-align:center;border:2px dashed rgba(255,213,46,.6);border-radius:16px;background:rgba(255,213,46,.07)}
+.win-card small{display:block;color:var(--muted);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
+.win-card b{display:block;margin:4px 0;font-size:19px}
+.win-card strong{display:block;font:800 32px "Barlow Condensed",sans-serif;letter-spacing:3px;color:var(--yellow)}
+.mini{margin-top:8px;padding:8px 16px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;font:700 13px Inter,sans-serif;cursor:pointer}
+
+/* Lots */
+.prize-card h2{margin-bottom:18px;font-size:36px}
+.prize-list{list-style:none;display:grid;gap:9px;margin:0;padding:0}
+.prize-list li{display:flex;align-items:center;gap:14px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.03);transition:.2s}
+.prize-list li:hover{border-color:rgba(0,169,232,.5);background:rgba(0,169,232,.08);transform:translateX(3px)}
+.prize-list li.star{border-color:rgba(255,213,46,.5);background:rgba(255,213,46,.08)}
+.chip{flex:0 0 54px;display:grid;place-items:center;height:46px;border-radius:11px;font:900 23px "Barlow Condensed",sans-serif}
+.c-blue{color:#fff;background:#0a8cc2}.c-yellow{color:#08131d;background:var(--yellow)}.c-gold{color:#08131d;background:linear-gradient(135deg,#ffe680,#ffb300)}.c-ghost{color:var(--yellow);background:rgba(255,213,46,.12)}
+.prize-list div{display:grid;line-height:1.3}.prize-list strong{font-size:15px}.prize-list small{color:var(--muted);font-size:13px}
+
+/* Étapes + footer */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 46px}
+.steps>div{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)}
+.steps b{display:grid;place-items:center;flex:0 0 40px;height:40px;border-radius:50%;color:#06101a;background:var(--blue-2);font:900 21px "Barlow Condensed",sans-serif}
+.steps p{margin:0;display:grid;line-height:1.35}.steps strong{font-size:15px}.steps span{color:var(--muted);font-size:13px}
+footer{display:flex;align-items:center;justify-content:center;gap:14px;padding:24px 16px;border-top:1px solid var(--line);color:#7d93a4;font-size:13px;text-align:center}
+.footer-brand{color:#b7cddc;font-weight:900;letter-spacing:2px;font-size:16px}footer p{margin:0}
+
+/* Modale */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(2,8,14,.8);backdrop-filter:blur(6px);animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.modal-box{width:min(440px,100%);max-height:94vh;overflow:auto;padding:28px 24px 24px;text-align:center;border:1px solid rgba(255,213,46,.35);border-radius:26px;background:linear-gradient(160deg,#15354d,#08131e);box-shadow:0 30px 90px rgba(0,0,0,.65);animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.modal-emoji{font-size:60px;line-height:1}
+.modal-box h3{margin:10px 0 4px;font:900 40px "Barlow Condensed",sans-serif;color:var(--yellow)}
+.modal-prize{margin:0 0 14px;font-size:22px;font-weight:800}
+.code-box{display:grid;gap:6px;margin:4px 0 14px;padding:14px;border:2px dashed rgba(255,213,46,.6);border-radius:14px;background:rgba(255,213,46,.07)}
+.code-box small{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;font-weight:700}
+.code-box strong{font:800 32px "Barlow Condensed",sans-serif;letter-spacing:3px;color:var(--yellow);word-break:break-all}
+.code-box .mini{justify-self:center}
+.modal-box .muted{margin:0 0 16px}
+.share{margin:6px 0 18px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:10px}
+.share small{color:var(--muted);font-size:13px}
+.share-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.share-row a,.share-row button{display:grid;place-items:center;min-height:46px;padding:8px;color:#fff;text-decoration:none;cursor:pointer;background:rgba(255,255,255,.07);border:1px solid rgba(0,169,232,.5);border-radius:11px;font:700 13px Inter,sans-serif}
+.share-row a:hover,.share-row button:hover{background:rgba(0,169,232,.2)}
+.confetti{position:fixed;z-index:200;top:-20px;pointer-events:none;border-radius:2px}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.steps{grid-template-columns:1fr;gap:10px;margin-bottom:32px}}
+@media(max-width:520px){.topbar{height:58px}.brand-name{font-size:19px}.brand-event{font-size:11px}.ghost-btn{padding:8px 11px}.hero{padding:28px 0 18px}.hero-sub{font-size:15px}.stats li{min-width:92px;padding:8px 12px}.game-card{padding:22px 14px 26px}.prize-card{padding:22px 14px}footer{flex-direction:column;gap:6px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="TECNO Black Friday"><span class="brand-name">TECNO</span><span class="brand-divider"></span><span class="brand-event">BLACK FRIDAY</span></a>
+  <div class="top-actions">
+    <button class="ghost-btn" id="soundBtn" type="button" aria-label="Activer ou couper le son">🔊</button>
+    <button class="ghost-btn" id="shareTop" type="button">Partager <span aria-hidden="true">↗</span></button>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>Black Friday TECNO</span><span>Jusqu'à 25 % de remise</span><span>Écouteurs Bluetooth à gagner</span><span>3 essais gratuits</span>
+  <span>Black Friday TECNO</span><span>Jusqu'à 25 % de remise</span><span>Écouteurs Bluetooth à gagner</span><span>3 essais gratuits</span>
+</div></div>
+
+<main>
+  <section class="hero">
+    <div class="tag"><span class="dot"></span> Offre spéciale Black Friday</div>
+    <h1>SPIN <em>&</em> WIN</h1>
+    <p class="hero-sub">Lance la roue et repars avec une remise TECNO ou des écouteurs Bluetooth.</p>
+    <ul class="stats">
+      <li><strong>3</strong><span>essais</span></li>
+      <li><strong>7</strong><span>surprises</span></li>
+      <li><strong>25%</strong><span>de remise max</span></li>
+    </ul>
+  </section>
+
+  <section class="layout">
+    <div class="card game-card">
+      <span class="kicker">À toi de jouer</span>
+      <h2>La roue des cadeaux</h2>
+
+      <!-- INSCRIPTION -->
+      <form id="registerForm" class="register" novalidate>
+        <div class="register-icon" aria-hidden="true">🎁</div>
+        <h3>Prêt à tenter ta chance ?</h3>
+        <p class="muted">Inscris-toi en 10 secondes pour accéder à la roue.</p>
+
+        <label for="nameInput">Nom complet</label>
+        <input id="nameInput" type="text" placeholder="Ex. : Marie Obame" autocomplete="name" maxlength="70">
+
+        <label for="whatsapp">Numéro WhatsApp</label>
+        <div class="phone">
+          <div class="prefix"><span aria-hidden="true">🇬🇦</span> +241</div>
+          <input id="whatsapp" type="tel" placeholder="07 00 00 00" autocomplete="tel-national" inputmode="tel">
+        </div>
+        <p class="hint">Saisis seulement ton numéro (sans +241). Un numéro d'un autre pays ? Écris-le avec son indicatif (ex. +33…).</p>
+
+        <div class="form-error" id="formError" role="alert" hidden></div>
+
+        <button class="btn btn-primary" id="registerBtn" type="submit">Accéder au jeu <span aria-hidden="true">→</span></button>
+        <p class="legal">En jouant, tu acceptes le règlement du jeu. Tes informations servent uniquement à gérer ta participation et à te contacter en cas de gain.</p>
+      </form>
+
+      <!-- JEU -->
+      <div id="gamePanel" hidden>
+        <div class="welcome">
+          <div class="avatar" id="avatar">T</div>
+          <div><small>Bienvenue</small><strong id="name"></strong></div>
+        </div>
+        <button class="link-btn" id="logoutBtn" type="button">Ce n'est pas moi · Changer de numéro</button>
+
+        <div class="wheel-stage">
+          <div class="pointer" id="pointer" aria-hidden="true"></div>
+          <div class="wheel-halo" aria-hidden="true"></div>
+          <canvas id="wheel" width="760" height="760" aria-label="Roue des cadeaux"></canvas>
+          <div class="hub" aria-hidden="true"><span>TECNO</span></div>
+        </div>
+
+        <div class="tries">
+          <div class="pips" id="pips" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span id="tries">3 essais disponibles</span>
+        </div>
+
+        <button class="btn btn-primary btn-spin" id="spin" type="button">
+          <span class="spin-icon" aria-hidden="true">↻</span> <span id="spinLabel">LANCER LA ROUE</span>
+        </button>
+
+        <div class="result" id="result" aria-live="polite"></div>
+
+        <div class="win-card" id="winCard" hidden>
+          <small>Ton lot</small>
+          <b id="wcPrize"></b>
+          <strong id="wcCode"></strong>
+          <button class="mini" id="wcCopy" type="button">Copier le code</button>
+        </div>
+      </div>
+
+      <p class="error" id="error" role="alert"></p>
+    </div>
+
+    <aside class="card prize-card">
+      <span class="kicker">Les récompenses</span>
+      <h2>Ce que tu peux<br>remporter</h2>
+      <ul class="prize-list">
+        <li><b class="chip c-blue">5%</b><div><strong>Remise de 5 %</strong><small>Sur ton prochain achat</small></div></li>
+        <li><b class="chip c-blue">10%</b><div><strong>Remise de 10 %</strong><small>Sur ton prochain achat</small></div></li>
+        <li><b class="chip c-yellow">15%</b><div><strong>Remise de 15 %</strong><small>Sur ton prochain achat</small></div></li>
+        <li><b class="chip c-yellow">20%</b><div><strong>Remise de 20 %</strong><small>Sur ton prochain achat</small></div></li>
+        <li><b class="chip c-gold">25%</b><div><strong>Remise de 25 %</strong><small>Le gros lot remise</small></div></li>
+        <li class="star"><b class="chip c-gold">🎧</b><div><strong>Écouteurs Bluetooth TECNO</strong><small>Le cadeau star</small></div></li>
+        <li><b class="chip c-ghost">↻</b><div><strong>Tentez à nouveau</strong><small>Il te reste une chance</small></div></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="steps">
+    <div><b>1</b><p><strong>Inscris-toi</strong><span>Nom + numéro WhatsApp.</span></p></div>
+    <div><b>2</b><p><strong>Lance la roue</strong><span>3 essais maximum.</span></p></div>
+    <div><b>3</b><p><strong>Récupère ton lot</strong><span>1 seul gain par participant.</span></p></div>
+  </section>
+</main>
+
+<footer>
+  <span class="footer-brand">TECNO</span>
+  <p>TECNO BLACK FRIDAY · Jeu promotionnel. Consulte le règlement officiel avant de participer.<span class="version">Version 4</span></p>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-emoji" id="mEmoji">🎉</div>
+    <h3 id="mTitle">Félicitations !</h3>
+    <p class="modal-prize" id="mPrize"></p>
+    <div class="code-box" id="mCodeBox" hidden>
+      <small>Ton code de gain</small>
+      <strong id="mCode"></strong>
+      <button class="mini" id="copyCode" type="button">Copier le code</button>
+    </div>
+    <p class="muted" id="mText"></p>
+    <div class="share">
+      <small>Fais découvrir le jeu à tes amis</small>
+      <div class="share-row">
+        <a id="shareWhatsApp" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="shareFacebook" target="_blank" rel="noopener">Facebook</a>
+        <button id="copyLink" type="button">Copier</button>
+      </div>
+      <small id="copyFeedback" aria-live="polite"></small>
+    </div>
+    <button class="btn btn-primary" id="mClose" type="button">Continuer</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+const APP_VERSION = "v4";
+window.addEventListener("error", e => {
+  const box = document.getElementById("error");
+  if (box) box.textContent = "Erreur technique (" + APP_VERSION + ") : " + (e.message || "inconnue") + " — recharge la page (Ctrl+F5).";
+});
+window.addEventListener("unhandledrejection", e => {
+  const box = document.getElementById("error");
+  if (box) box.textContent = "Erreur technique (" + APP_VERSION + ") : " + ((e.reason && e.reason.message) || "inconnue");
+});
+const $ = id => document.getElementById(id);
+const SPIN_MS = 5400;
+
+// L'ordre doit correspondre à PRIZES dans server.js
+const SECTORS = [
+  { main: "5%",  sub: "REMISE",    bg: "#0a8cc2", fg: "#ffffff" },
+  { main: "10%", sub: "REMISE",    bg: "#0c2a40", fg: "#ffffff" },
+  { main: "15%", sub: "REMISE",    bg: "#ffd52e", fg: "#08131d" },
+  { main: "20%", sub: "REMISE",    bg: "#12476a", fg: "#ffffff" },
+  { main: "25%", sub: "REMISE",    bg: "#00a9e8", fg: "#04121d" },
+  { main: "🎧",  sub: "ÉCOUTEURS", bg: "#ff9d00", fg: "#08131d" },
+  { main: "↻",   sub: "REJOUER",   bg: "#0c2a40", fg: "#ffd52e" }
+];
+const STEP = 360 / SECTORS.length;
+
+let state = { connected: false };
+let spinning = false;
+let rotation = 0;
+let lastShare = null;
+let muted = false;
+try { muted = localStorage.getItem("muted") === "1"; } catch (e) {}
+
+/* ---------- Réseau ---------- */
+async function api(url, opts = {}) {
+  const r = await fetch(url, { credentials: "same-origin", ...opts, headers: { "Content-Type": "application/json", ...(opts.headers || {}) } });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) { const e = new Error(data.error || "Une erreur est survenue."); e.status = r.status; throw e; }
+  return data;
+}
+const showError = (m = "") => { $("error").textContent = m; };
+function showFormError(m, field) {
+  const box = $("formError");
+  if (!m) { box.hidden = true; return; }
+  box.textContent = m; box.hidden = false;
+  box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
+  if (field) { field.classList.add("invalid"); field.focus(); }
+}
+
+/* ---------- Sons ---------- */
+let actx = null;
+function beep(freq, dur = 0.05, type = "square", vol = 0.05, when = 0) {
+  if (muted) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === "suspended") actx.resume();
+    const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + when;
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t + dur);
+  } catch (e) {}
+}
+const winSound = () => [523, 659, 784, 1047].forEach((f, i) => beep(f, 0.22, "triangle", 0.12, i * 0.13));
+const loseSound = () => { beep(300, 0.18, "sawtooth", 0.06); beep(220, 0.28, "sawtooth", 0.06, 0.16); };
+function paintSound() { $("soundBtn").textContent = muted ? "🔇" : "🔊"; }
+$("soundBtn").addEventListener("click", () => {
+  muted = !muted; paintSound();
+  try { localStorage.setItem("muted", muted ? "1" : "0"); } catch (e) {}
+  beep(800, 0.06);
+});
+
+/* ---------- Roue ---------- */
+function prizeIndex(data) {
+  if (Number.isInteger(data.index) && data.index >= 0 && data.index < SECTORS.length) return data.index;
+  const v = String(data.prize || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  if (v.includes("couteur") || v.includes("bluetooth")) return 5;
+  const m = v.match(/(\d+)\s*%/);
+  if (m) { const i = [5, 10, 15, 20, 25].indexOf(Number(m[1])); if (i >= 0) return i; }
+  return 6;
+}
+
+function drawWheel() {
+  const canvas = $("wheel"), ctx = canvas.getContext("2d");
+  const size = canvas.width, c = size / 2, R = c - 34, rad = Math.PI / 180;
+  ctx.clearRect(0, 0, size, size);
+
+  const ring = ctx.createLinearGradient(0, 0, size, size);
+  ring.addColorStop(0, "#f4fcff"); ring.addColorStop(1, "#8fdcff");
+  ctx.beginPath(); ctx.arc(c, c, c - 2, 0, Math.PI * 2); ctx.fillStyle = ring; ctx.fill();
+  ctx.beginPath(); ctx.arc(c, c, R + 24, 0, Math.PI * 2); ctx.fillStyle = "#06192a"; ctx.fill();
+
+  SECTORS.forEach((s, i) => {
+    const a0 = (-90 + i * STEP) * rad, a1 = (-90 + (i + 1) * STEP) * rad;
+    ctx.beginPath(); ctx.moveTo(c, c); ctx.arc(c, c, R, a0, a1); ctx.closePath();
+    ctx.fillStyle = s.bg; ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = "rgba(255,255,255,.85)"; ctx.stroke();
+  });
+
+  const shine = ctx.createRadialGradient(c, c, R * 0.15, c, c, R);
+  shine.addColorStop(0, "rgba(255,255,255,.2)"); shine.addColorStop(1, "rgba(0,0,0,.2)");
+  ctx.beginPath(); ctx.arc(c, c, R, 0, Math.PI * 2); ctx.fillStyle = shine; ctx.fill();
+
+  SECTORS.forEach((s, i) => {
+    const mid = (-90 + i * STEP + STEP / 2) * rad;
+    ctx.save(); ctx.translate(c, c); ctx.rotate(mid);
+    ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillStyle = s.fg;
+    ctx.font = (/\d/.test(s.main) ? "900 76px" : "700 66px") + ' "Barlow Condensed", Impact, sans-serif';
+    ctx.fillText(s.main, R - 34, -12);
+    ctx.font = "800 22px Inter, Arial, sans-serif"; ctx.globalAlpha = 0.85;
+    ctx.fillText(s.sub, R - 34, 34);
+    ctx.restore();
+  });
+
+  for (let i = 0; i < 28; i++) {
+    const a = (i / 28) * Math.PI * 2;
+    ctx.beginPath(); ctx.arc(c + Math.cos(a) * (R + 12), c + Math.sin(a) * (R + 12), 5.5, 0, Math.PI * 2);
+    ctx.fillStyle = i % 2 ? "#ffd52e" : "#ffffff"; ctx.shadowColor = "#ffd52e"; ctx.shadowBlur = 10; ctx.fill(); ctx.shadowBlur = 0;
+  }
+}
+
+// Moteur d'animation : la roue démarre dès le clic, puis ralentit vers le secteur gagnant
+const anim = { phase: "idle", v: 0, last: 0, from: 0, to: 0, t0: 0, dur: 0, done: null, lastIdx: -1 };
+function applyAngle() { $("wheel").style.transform = `rotate(${rotation}deg)`; }
+
+function tickCheck() {
+  const idx = Math.floor((((360 - (rotation % 360)) % 360) + 360) % 360 / STEP);
+  if (idx !== anim.lastIdx) {
+    if (anim.lastIdx !== -1) {
+      const p = $("pointer"); p.classList.remove("tick"); void p.offsetWidth; p.classList.add("tick");
+      beep(700 + idx * 40, 0.03, "square", 0.04);
+    }
+    anim.lastIdx = idx;
+  }
+}
+
+function frame(ts) {
+  if (anim.phase === "idle") return;
+  const dt = Math.min(0.05, (ts - anim.last) / 1000); anim.last = ts;
+  if (anim.phase === "free") {
+    anim.v = Math.min(900, anim.v + 2200 * dt);
+    rotation += anim.v * dt;
+  } else if (anim.phase === "land") {
+    const t = Math.min(1, (ts - anim.t0) / anim.dur);
+    rotation = anim.from + (anim.to - anim.from) * (1 - Math.pow(1 - t, 3.2));
+    if (t >= 1) { anim.phase = "idle"; applyAngle(); const cb = anim.done; anim.done = null; if (cb) cb(); return; }
+  }
+  applyAngle(); tickCheck();
+  requestAnimationFrame(frame);
+}
+
+function startSpin() {
+  anim.phase = "free"; anim.v = 0; anim.lastIdx = -1; anim.last = performance.now();
+  requestAnimationFrame(frame);
+}
+
+// Ralentit jusqu'à un angle final (index = secteur gagnant, ou null pour simplement s'arrêter)
+function landOn(index, done) {
+  let extra, dur;
+  if (index === null) { extra = 360; dur = 1400; }
+  else { extra = 4 * 360; dur = SPIN_MS; }
+  const jitter = (Math.random() - 0.5) * STEP * 0.6;
+  const target = index === null ? (rotation % 360) : (360 - (index * STEP + STEP / 2 + jitter)) % 360;
+  anim.from = rotation;
+  anim.to = rotation + extra + ((target - (rotation % 360) + 360) % 360);
+  anim.t0 = performance.now(); anim.dur = dur; anim.done = done; anim.phase = "land";
+}
+
+/* ---------- Affichage ---------- */
+function setSpinButton(busy) {
+  $("spin").classList.toggle("busy", busy);
+  $("spinLabel").textContent = busy ? "LA ROUE TOURNE…" : "LANCER LA ROUE";
+}
+
+function render() {
+  $("registerForm").hidden = !!state.connected;
+  $("gamePanel").hidden = !state.connected;
+  if (!state.connected) return;
+
+  const p = state.participant;
+  $("name").textContent = p.name;
+  $("avatar").textContent = (p.name || "T").trim().charAt(0).toUpperCase();
+  const remaining = p.won ? 0 : Math.max(0, state.remaining);
+  [...$("pips").children].forEach((el, i) => el.classList.toggle("off", i >= remaining));
+  $("tries").textContent = p.won ? "Participation terminée — gain obtenu 🎉"
+    : remaining === 0 ? "Tous tes essais sont utilisés"
+    : `${remaining} essai${remaining > 1 ? "s" : ""} disponible${remaining > 1 ? "s" : ""}`;
+
+  const noTries = remaining <= 0;
+  $("spin").disabled = spinning;                 // désactivé seulement pendant la rotation
+  $("spin").classList.toggle("inactive", noTries);
+  if (!spinning) {
+    setSpinButton(false);
+    $("result").textContent = p.won ? "🎉 Tu as déjà gagné : ton code est ci-dessous."
+      : noTries ? "Tu as utilisé tes 3 essais avec ce numéro. Une seule participation par numéro."
+      : "";
+  }
+
+  const pr = state.prize;
+  $("winCard").hidden = !(p.won && pr && pr.code);
+  if (pr && pr.code) { $("wcPrize").textContent = pr.prize; $("wcCode").textContent = pr.code; }
+}
+
+async function refresh() {
+  state = await api("/api/me");
+  render();
+}
+
+/* ---------- Inscription ---------- */
+// Construit un numéro international : "07 00 00 00" -> +24107000000
+function buildPhone(raw) {
+  let v = String(raw).replace(/[^\d+]/g, "");
+  if (v.startsWith("00")) v = "+" + v.slice(2);
+  if (v.startsWith("+")) return v;
+  if (/^241\d{8,9}$/.test(v)) return "+" + v;
+  return "+241" + v;
+}
+
+$("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  showFormError("");
+  $("nameInput").classList.remove("invalid"); $("whatsapp").classList.remove("invalid");
+
+  const name = $("nameInput").value.trim().replace(/\s+/g, " ");
+  const phone = buildPhone($("whatsapp").value);
+  const local = phone.startsWith("+241") ? phone.slice(4) : phone.slice(1);
+
+  if (name.length < 2) return showFormError("Saisis ton nom complet (2 lettres minimum).", $("nameInput"));
+  if (!$("whatsapp").value.trim()) return showFormError("Saisis ton numéro WhatsApp.", $("whatsapp"));
+  if (!/^\+\d{8,15}$/.test(phone) || (phone.startsWith("+241") && !/^\d{8,9}$/.test(local)))
+    return showFormError("Numéro invalide. Exemple : 07 00 00 00 (8 chiffres, sans +241).", $("whatsapp"));
+
+  const btn = $("registerBtn");
+  btn.disabled = true; btn.textContent = "INSCRIPTION EN COURS…";
+  try {
+    const data = await api("/api/register", { method: "POST", body: JSON.stringify({ name, whatsapp: phone }) });
+    state = { connected: true, participant: data.participant, remaining: data.remaining, prize: data.prize || null };
+    render();
+    $("gamePanel").scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (err) {
+    showFormError(err.status ? err.message : "Connexion impossible. Vérifie ta connexion internet et réessaie.");
+  } finally {
+    btn.disabled = false; btn.innerHTML = 'Accéder au jeu <span aria-hidden="true">→</span>';
+  }
+});
+["nameInput", "whatsapp"].forEach(id => $(id).addEventListener("input", () => { $(id).classList.remove("invalid"); showFormError(""); }));
+
+/* ---------- Résultat ---------- */
+function launchConfetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const colors = ["#00a9e8", "#ffd52e", "#ffffff", "#42d5ff", "#ff9d00"];
+  for (let i = 0; i < 100; i++) {
+    const el = document.createElement("span");
+    el.className = "confetti";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.width = 6 + Math.random() * 7 + "px"; el.style.height = 9 + Math.random() * 9 + "px";
+    el.style.background = colors[i % colors.length];
+    document.body.appendChild(el);
+    const a = el.animate([
+      { transform: "translate3d(0,0,0) rotate(0)", opacity: 1 },
+      { transform: `translate3d(${(Math.random() - 0.5) * 260}px,${innerHeight + 40}px,0) rotate(${500 + Math.random() * 700}deg)`, opacity: 0.2 }
+    ], { duration: 2000 + Math.random() * 2200, easing: "cubic-bezier(.2,.7,.3,1)", delay: Math.random() * 300 });
+    a.onfinish = () => el.remove();
+  }
+}
+
+function buildShare(data) {
+  const url = location.origin + location.pathname;
+  const message = data.won
+    ? `Je viens de gagner « ${data.prize} » au TECNO BLACK FRIDAY SPIN & WIN ! 🎉 Tente ta chance à ton tour : ${url}`
+    : `Je joue au TECNO BLACK FRIDAY SPIN & WIN ! Tente ta chance à ton tour : ${url}`;
+  lastShare = { url, message };
+  $("shareWhatsApp").href = "https://wa.me/?text=" + encodeURIComponent(message);
+  $("shareFacebook").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(message);
+  $("copyFeedback").textContent = "";
+}
+
+function openModal(data) {
+  buildShare(data);
+  const won = data.won;
+  $("mEmoji").textContent = won ? "🎉" : "😅";
+  $("mTitle").textContent = won ? "Félicitations !" : "Pas cette fois…";
+  $("mTitle").style.color = won ? "" : "#fff";
+  $("mPrize").textContent = won ? data.prize : "Tentez à nouveau";
+  $("mCodeBox").hidden = !won;
+  if (won) $("mCode").textContent = data.code;
+  const left = state.participant.won ? 0 : state.remaining;
+  $("mText").textContent = won ? "Garde bien ce code : il te sera demandé pour récupérer ton lot."
+    : left > 0 ? `Il te reste ${left} essai${left > 1 ? "s" : ""}. La chance va tourner !`
+    : "Tu as utilisé tous tes essais. Merci d'avoir joué !";
+  $("mClose").textContent = won || left === 0 ? "Fermer" : "Rejouer";
+  $("modal").hidden = false;
+  if (won) { launchConfetti(); winSound(); } else loseSound();
+}
+const closeModal = () => { $("modal").hidden = true; };
+$("mClose").addEventListener("click", closeModal);
+$("modal").addEventListener("click", e => { if (e.target === $("modal")) closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+async function copyText(text, el, ok) {
+  try { await navigator.clipboard.writeText(text); el.textContent = ok; }
+  catch (e) { el.textContent = "Copie impossible : copie le texte manuellement."; }
+}
+$("copyCode").addEventListener("click", () => copyText($("mCode").textContent, $("copyFeedback"), "Code copié ✔"));
+$("wcCopy").addEventListener("click", () => { copyText($("wcCode").textContent, $("error"), "Code copié ✔"); setTimeout(() => { if ($("error").textContent === "Code copié ✔") showError(""); }, 2000); });
+$("copyLink").addEventListener("click", () => lastShare && copyText(lastShare.message, $("copyFeedback"), "Message et lien copiés ✔"));
+$("shareTop").addEventListener("click", async () => {
+  const url = location.origin + location.pathname, text = "Tente ta chance au TECNO BLACK FRIDAY SPIN & WIN !";
+  if (navigator.share) { try { await navigator.share({ title: "TECNO SPIN & WIN", text, url }); } catch (e) {} }
+  else { await copyText(`${text} ${url}`, $("error"), "Lien copié ✔"); setTimeout(() => { if ($("error").textContent === "Lien copié ✔") showError(""); }, 2500); }
+});
+
+/* ---------- Lancer la roue ---------- */
+$("spin").addEventListener("click", async () => {
+  if (spinning) return;
+  if (!state.connected) return showError("Inscris-toi avant de jouer.");
+  if (state.participant.won) return showError("Tu as déjà gagné : ta participation est terminée. Ton code est affiché sous la roue.");
+  if (state.remaining <= 0) return showError("Tu as utilisé tes 3 essais avec ce numéro. Pour tester, utilise un autre numéro (bouton « Changer de numéro »).");
+
+  spinning = true; showError("");
+  $("result").textContent = "Bonne chance ! 🍀";
+  $("spin").disabled = true; setSpinButton(true);
+  beep(500, 0.08);   // débloque l'audio sur mobile
+  startSpin();       // la roue tourne tout de suite, sans attendre le serveur
+  const started = performance.now();
+
+  let data = null, failure = null;
+  try { data = await api("/api/spin", { method: "POST", body: "{}" }); }
+  catch (err) { failure = err; }
+  const wait = Math.max(0, 900 - (performance.now() - started));   // au moins ~1 s de rotation visible
+  await new Promise(r => setTimeout(r, wait));
+
+  if (failure) {
+    landOn(null, () => {
+      spinning = false; $("result").textContent = ""; setSpinButton(false);
+      if (failure.status === 401) {
+        state = { connected: false }; render();
+        showFormError("Ta session a expiré. Saisis à nouveau ton nom et ton numéro pour continuer.");
+      } else {
+        showError(failure.status ? failure.message : "Connexion impossible. Vérifie ton internet et réessaie.");
+        refresh().catch(() => {});
+      }
+    });
+    return;
+  }
+
+  landOn(prizeIndex(data), () => {
+    spinning = false;
+    state.participant.attempts = data.attempts;
+    if (data.won) { state.participant.won = 1; state.prize = { prize: data.prize, code: data.code }; }
+    state.remaining = data.remaining;
+    $("result").textContent = data.won ? `🎉 ${data.prize}` : "Tentez à nouveau !";
+    render(); openModal(data);
+  });
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  if (spinning) return;
+  try { await api("/api/logout", { method: "POST", body: "{}" }); } catch (e) {}
+  state = { connected: false }; render(); showError(""); showFormError("");
+  $("whatsapp").value = ""; $("nameInput").focus();
+});
+
+/* ---------- Démarrage ---------- */
+paintSound();
+drawWheel();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawWheel);
+refresh().catch(() => showFormError("Impossible de charger le jeu. Vérifie ta connexion et recharge la page."));
+</script>
+</body>
+</html>

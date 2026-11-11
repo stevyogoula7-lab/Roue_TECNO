@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Administration — TECNO SPIN & WIN</title>
+<style>
+  :root { --blue:#00a9e8; --yellow:#ffd52e; --line:rgba(255,255,255,.12); }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; color:#f4f9ff; background:linear-gradient(160deg,#07131f,#040a12); font:15px/1.5 Inter,system-ui,Arial,sans-serif; }
+  main { width:min(1100px,100% - 32px); margin:0 auto; padding:32px 0 60px; }
+  h1 { margin:0 0 20px; font:900 44px/1 "Barlow Condensed",Impact,sans-serif; letter-spacing:1px; }
+  h1 em { color:var(--blue); font-style:normal; }
+  .panel { padding:22px; border:1px solid var(--line); border-radius:16px; background:#0c1b2a; }
+  input, select { min-height:44px; padding:10px 13px; color:#fff; background:#07121d; border:1px solid rgba(255,255,255,.2); border-radius:10px; font:inherit; }
+  input:focus, select:focus { outline:2px solid var(--blue); }
+  button, .btn { display:inline-block; min-height:44px; padding:10px 18px; border:0; border-radius:10px; color:#04121d; background:var(--blue); font:700 14px Inter,sans-serif; text-decoration:none; cursor:pointer; }
+  #login { display:grid; gap:12px; max-width:360px; }
+  #error { color:#ff9b9b; min-height:20px; margin:0; }
+  .stats { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:18px; }
+  .stat { flex:1 1 150px; padding:14px 16px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.03); }
+  .stat b { display:block; color:var(--yellow); font:800 32px/1.1 "Barlow Condensed",sans-serif; }
+  .stat span { color:#9bb1c2; font-size:13px; }
+  .tools { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .tools input { flex:1 1 240px; }
+  .scroll { overflow:auto; border:1px solid var(--line); border-radius:12px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; min-width:720px; }
+  th, td { padding:11px 13px; text-align:left; border-bottom:1px solid var(--line); }
+  th { color:#9bb1c2; font-size:12px; text-transform:uppercase; letter-spacing:1px; background:rgba(255,255,255,.04); position:sticky; top:0; }
+  code { color:var(--yellow); }
+</style>
+</head>
+<body>
+<main>
+  <h1>ADMIN <em>TECNO</em></h1>
+  <section class="panel">
+    <form id="login">
+      <p>Accès réservé à l'administration.</p>
+      <input id="password" type="password" placeholder="Mot de passe administrateur" autocomplete="current-password">
+      <button type="submit">SE CONNECTER</button>
+      <p id="error"></p>
+    </form>
+    <div id="dashboard" hidden>
+      <div class="stats" id="stats"></div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Rechercher un nom, un numéro ou un code…">
+        <a class="btn" href="/api/admin/export.csv">EXPORTER CSV / EXCEL</a>
+      </div>
+      <div class="scroll"><table id="rows"></table></div>
+      <p id="msg"></p>
+    </div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+let allRows = [];
+
+async function req(url, opts = {}) {
+  const r = await fetch(url, { credentials: "same-origin", ...opts, headers: { "Content-Type": "application/json" } });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw Error(d.error || "Erreur");
+  return d;
+}
+
+$("login").addEventListener("submit", async e => {
+  e.preventDefault();
+  try { await req("/admin/login", { method: "POST", body: JSON.stringify({ password: $("password").value }) }); load(); }
+  catch (err) { $("error").textContent = err.message; }
+});
+
+function draw() {
+  const q = $("search").value.trim().toLowerCase();
+  const rows = allRows.filter(x => !q || [x.name, x.whatsapp, x.code, x.prize].some(v => String(v ?? "").toLowerCase().includes(q)));
+  const status = x => x.code
+    ? `<select data-code="${esc(x.code)}">${[["pending","En attente"],["validated","Validé"],["collected","Remis"]]
+        .map(([v, l]) => `<option value="${v}"${x.status === v ? " selected" : ""}>${l}</option>`).join("")}</select>`
+    : "—";
+  $("rows").innerHTML = "<tr><th>Nom</th><th>WhatsApp</th><th>Essais</th><th>Lot</th><th>Code</th><th>Statut</th><th>Inscrit le</th></tr>" +
+    rows.map(x => `<tr><td>${esc(x.name)}</td><td>${esc(x.whatsapp)}</td><td>${x.attempts}/3</td><td>${esc(x.prize || "—")}</td><td><code>${esc(x.code || "")}</code></td><td>${status(x)}</td><td>${esc(x.created_at)}</td></tr>`).join("");
+}
+
+async function load() {
+  try {
+    const d = await req("/api/admin/stats");
+    $("login").hidden = true; $("dashboard").hidden = false;
+    allRows = d.rows;
+    $("stats").innerHTML =
+      `<div class="stat"><b>${d.participants}</b><span>Participants</span></div>` +
+      `<div class="stat"><b>${d.winners}</b><span>Gagnants</span></div>` +
+      `<div class="stat"><b>${d.prizes}</b><span>Lots attribués</span></div>`;
+    draw();
+  } catch (err) { $("error").textContent = err.message; }
+}
+
+$("search").addEventListener("input", draw);
+$("rows").addEventListener("change", async e => {
+  const sel = e.target.closest("select[data-code]");
+  if (!sel) return;
+  try {
+    await req("/api/admin/prize-status", { method: "POST", body: JSON.stringify({ code: sel.dataset.code, status: sel.value }) });
+    const row = allRows.find(x => x.code === sel.dataset.code); if (row) row.status = sel.value;
+    $("msg").textContent = "Statut mis à jour ✔";
+  } catch (err) { $("msg").textContent = err.message; }
+});
+
+load(); // si la session admin est déjà ouverte
+</script>
+</body>
+</html>
