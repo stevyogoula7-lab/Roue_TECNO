@@ -87,7 +87,7 @@ input.invalid{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.15)}
 .btn-primary{color:#04121d;background:linear-gradient(100deg,var(--blue),#5fdcff);box-shadow:0 10px 28px rgba(0,169,232,.35)}
 .btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.08)}
 .btn-primary:active:not(:disabled){transform:scale(.99)}
-.btn:disabled{opacity:.5;cursor:not-allowed}.btn-spin.inactive{opacity:.55;filter:grayscale(.5);animation:none}.link-btn{display:block;margin:6px auto 0;padding:6px 10px;background:none;border:0;color:var(--blue-2);font:600 13px Inter,sans-serif;text-decoration:underline;cursor:pointer}.version{display:block;margin-top:4px;font-size:11px;opacity:.55}
+.btn:disabled{opacity:.5;cursor:not-allowed}.btn-spin.inactive{opacity:.55;filter:grayscale(.5);animation:none}.link-btn{display:block;margin:6px auto 0;padding:6px 10px;background:none;border:0;color:var(--blue-2);font:600 13px Inter,sans-serif;text-decoration:underline;cursor:pointer}.version{display:block;margin-top:4px;font-size:11px;opacity:.55}.wa-card{display:flex;align-items:center;gap:14px;margin:18px auto 0;max-width:430px;padding:14px 16px;border-radius:16px;text-decoration:none;color:#fff;background:linear-gradient(135deg,rgba(37,211,102,.2),rgba(37,211,102,.06));border:1px solid rgba(37,211,102,.6);transition:.2s}.wa-card:hover{transform:translateY(-2px);border-color:#25d366;box-shadow:0 10px 30px rgba(37,211,102,.2)}.wa-ico{flex:0 0 46px;height:46px;display:grid;place-items:center;border-radius:50%;background:#25d366;font-size:24px}.wa-card div:nth-child(2){display:grid;line-height:1.3}.wa-card strong{font-size:15px}.wa-card small{color:#bfe9cf;font-size:13px}.wa-go{margin-left:auto;font-weight:800;color:#25d366;white-space:nowrap}.btn-wa{margin-bottom:10px;color:#04210f;background:#25d366;text-decoration:none;box-shadow:0 10px 28px rgba(37,211,102,.3)}.btn-wa:hover{filter:brightness(1.08)}
 .register .btn{margin-top:20px}
 
 /* Jeu */
@@ -247,6 +247,12 @@ footer{display:flex;align-items:center;justify-content:center;gap:14px;padding:2
 
         <div class="result" id="result" aria-live="polite"></div>
 
+        <a class="wa-card" id="waCard" target="_blank" rel="noopener" hidden>
+          <div class="wa-ico" aria-hidden="true">💬</div>
+          <div><strong>Rejoins notre groupe WhatsApp</strong><small>Reste informé(e) des offres et des annonces TECNO.</small></div>
+          <span class="wa-go">Rejoindre →</span>
+        </a>
+
         <div class="win-card" id="winCard" hidden>
           <small>Ton lot</small>
           <b id="wcPrize"></b>
@@ -282,7 +288,7 @@ footer{display:flex;align-items:center;justify-content:center;gap:14px;padding:2
 
 <footer>
   <span class="footer-brand">TECNO</span>
-  <p>TECNO BLACK FRIDAY · Jeu promotionnel. Consulte le règlement officiel avant de participer.<span class="version">Version 4</span></p>
+  <p>TECNO BLACK FRIDAY · Jeu promotionnel. Consulte le règlement officiel avant de participer.<span class="version">Version 5</span></p>
 </footer>
 
 <div class="modal" id="modal" hidden>
@@ -305,13 +311,14 @@ footer{display:flex;align-items:center;justify-content:center;gap:14px;padding:2
       </div>
       <small id="copyFeedback" aria-live="polite"></small>
     </div>
+    <a class="btn btn-wa" id="mWa" target="_blank" rel="noopener" hidden>💬 Rejoindre le groupe WhatsApp</a>
     <button class="btn btn-primary" id="mClose" type="button">Continuer</button>
   </div>
 </div>
 
 <script>
 "use strict";
-const APP_VERSION = "v4";
+const APP_VERSION = "v5";
 window.addEventListener("error", e => {
   const box = document.getElementById("error");
   if (box) box.textContent = "Erreur technique (" + APP_VERSION + ") : " + (e.message || "inconnue") + " — recharge la page (Ctrl+F5).";
@@ -671,7 +678,17 @@ $("logoutBtn").addEventListener("click", async () => {
   $("whatsapp").value = ""; $("nameInput").focus();
 });
 
+/* ---------- Groupe WhatsApp ---------- */
+async function loadConfig() {
+  try {
+    const c = await api("/api/config");
+    const url = String(c.whatsappGroup || "");
+    if (/^https:\/\//.test(url)) ["waCard", "mWa"].forEach(id => { $(id).href = url; $(id).hidden = false; });
+  } catch (e) { /* sans lien, le bouton reste masqué */ }
+}
+
 /* ---------- Démarrage ---------- */
+loadConfig();
 paintSound();
 drawWheel();
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawWheel);
