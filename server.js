@@ -81,18 +81,24 @@ app.use(express.static(path.join(__dirname, "public"), {
   setHeaders: res => res.setHeader("Cache-Control", "no-cache")
 }));
 
+// Lien d'invitation du groupe WhatsApp (variable WHATSAPP_GROUP_URL sur Render). Si absent, le bouton est masqué.
+const WA_GROUP = /^https:\/\/(chat\.whatsapp\.com|whatsapp\.com\/channel|wa\.me)\//.test(process.env.WHATSAPP_GROUP_URL || "")
+  ? process.env.WHATSAPP_GROUP_URL : "";
+app.get("/api/config", (req, res) => res.json({ whatsappGroup: WA_GROUP }));
+
 // Pour le service de surveillance qui garde le site éveillé
 app.get("/health", (req, res) => res.type("text").send("ok"));
 
 // Probabilités par tour : le total fait 100, donc chaque poids se lit directement comme un pourcentage.
+// Faciles : 5 % et 10 %.  Difficiles : 15 %, 20 %, 25 % et les écouteurs.
 // L'ORDRE DE CETTE LISTE doit rester identique à celui des cases de la roue dans index.html.
 const PRIZES = [
-  { name: "Réduction 5 %", weight: 14 },
-  { name: "Réduction 10 %", weight: 10 },
-  { name: "Réduction 15 %", weight: 8 },
-  { name: "Réduction 20 %", weight: 5 },
-  { name: "Réduction 25 %", weight: 3 },
-  { name: "Écouteurs Bluetooth TECNO", weight: 2 },
+  { name: "Réduction 5 %", weight: 22 },
+  { name: "Réduction 10 %", weight: 14 },
+  { name: "Réduction 15 %", weight: 3 },
+  { name: "Réduction 20 %", weight: 1.5 },
+  { name: "Réduction 25 %", weight: 1 },
+  { name: "Écouteurs Bluetooth TECNO", weight: 0.5 },
   { name: "Tentez à nouveau", weight: 58 }
 ];
 const MAX_ATTEMPTS = 3;
