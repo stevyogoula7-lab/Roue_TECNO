@@ -84,14 +84,16 @@ app.use(express.static(path.join(__dirname, "public"), {
 // Pour le service de surveillance qui garde le site éveillé
 app.get("/health", (req, res) => res.type("text").send("ok"));
 
+// Probabilités par tour : le total fait 100, donc chaque poids se lit directement comme un pourcentage.
+// L'ORDRE DE CETTE LISTE doit rester identique à celui des cases de la roue dans index.html.
 const PRIZES = [
-  { name: "Réduction 5 %", weight: 5 },
-  { name: "Réduction 10 %", weight: 3 },
-  { name: "Réduction 15 %", weight: 2 },
-  { name: "Réduction 20 %", weight: 1 },
-  { name: "Réduction 25 %", weight: 0.5 },
-  { name: "Écouteurs Bluetooth TECNO", weight: 0.5 },
-  { name: "Tentez à nouveau", weight: 88 }
+  { name: "Réduction 5 %", weight: 14 },
+  { name: "Réduction 10 %", weight: 10 },
+  { name: "Réduction 15 %", weight: 8 },
+  { name: "Réduction 20 %", weight: 5 },
+  { name: "Réduction 25 %", weight: 3 },
+  { name: "Écouteurs Bluetooth TECNO", weight: 2 },
+  { name: "Tentez à nouveau", weight: 58 }
 ];
 const MAX_ATTEMPTS = 3;
 const totalWeight = PRIZES.reduce((s, p) => s + p.weight, 0);
